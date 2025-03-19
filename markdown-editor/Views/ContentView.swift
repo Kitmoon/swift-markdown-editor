@@ -43,7 +43,7 @@ struct ContentView: View {
             Text("Select an item")
         }
  */
-        MarkdownEditorView()
+        MarkdownUIEditorView()
     }
 
     private func addItem() {
