@@ -10,6 +10,10 @@ import SwiftData
 
 @main
 struct markdown_editorApp: App {
+    // Use this to toggle between different editor implementations
+    // Change to true to use MarkdownUI, false to use SwiftDown
+    private let useMarkdownUI = false
+    
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Item.self,
@@ -25,7 +29,7 @@ struct markdown_editorApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(useMarkdownUI: useMarkdownUI)
         }
         .modelContainer(sharedModelContainer)
     }
