@@ -14,35 +14,42 @@ import SwiftUI
 import MarkdownUI
 
 struct MarkdownEditorView: View {
-    @State private var markdownText: String = "# Hello, World!\nThis is **Markdown**."
-    @State private var cursorPosition: Int? = nil // Track cursor position
+    @State private var markdownText: String = "# Droit *Européen*" // Example text
+    @State private var cursorPosition: Int? = nil // Track cursor position (optional)
     
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 8) {
-                // Render each line as either editable or rendered
+                // Rendered Markdown with editable text
                 ForEach(renderedLines.indices, id: \.self) { index in
-                    if index == editableLineIndex {
-                        // Editable line
-                        TextField("", text: Binding(
-                            get: { renderedLines[index] },
-                            set: { newValue in updateLine(at: index, with: newValue) }
-                        ))
-                        .textFieldStyle(.roundedBorder)
-                        .onTapGesture {
-                            cursorPosition = index // Set the tapped line as editable
-                        }
-                    } else {
-                        // Rendered line
-                        Markdown(renderedLines[index])
-                            .padding(.horizontal)
-                            .onTapGesture {
-                                cursorPosition = index // Set the tapped line as editable
+                    HStack {
+                        if index == editableLineIndex {
+                            // Editable line with real-time rendering
+                            ZStack(alignment: .leading) {
+                                Markdown(renderedLines[index])
+                                    .padding(.horizontal)
+                                    .opacity(1) // Rendered Markdown in background for live preview effect
+                                
+                                TextField("", text: Binding(
+                                    get: { renderedLines[index] },
+                                    set: { newValue in updateLine(at: index, with: newValue) }
+                                ))
+                                .textFieldStyle(.plain)
+                                .foregroundColor(.clear) // Make text transparent to show rendered Markdown
+                                .background(Color.clear)
                             }
+                        } else {
+                            // Rendered line (non-editable)
+                            Markdown(renderedLines[index])
+                                .padding(.horizontal)
+                        }
                     }
                 }
             }
             .padding()
+        }
+        .onTapGesture {
+            determineEditableLine()
         }
     }
     
@@ -59,5 +66,10 @@ struct MarkdownEditorView: View {
         var lines = renderedLines
         lines[index] = newValue
         markdownText = lines.joined(separator: "\n")
+    }
+    
+    private func determineEditableLine() {
+        // Add logic to determine which line should become editable based on user interaction
+        cursorPosition = 0 // Example placeholder; implement gesture-based logic here
     }
 }
