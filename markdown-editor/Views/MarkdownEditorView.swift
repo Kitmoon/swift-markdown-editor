@@ -15,56 +15,49 @@ import MarkdownUI
 
 struct MarkdownEditorView: View {
     @State private var markdownText: String = "# Hello, World!\nThis is **Markdown**."
-    @State private var currentLineIndex: Int = 0
+    @State private var cursorPosition: Int? = nil // Track cursor position
     
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 8) {
-                // Render lines before the current line
-                ForEach(0..<currentLineIndex, id: \.self) { index in
-                    Markdown { preprocessMarkdown(lines[index]) }
-                        .padding(.horizontal)
-                }
-                
-                // Editable current line
-                TextEditor(text: Binding(
-                    get: { lines[currentLineIndex] },
-                    set: { newValue in
-                        updateLine(at: currentLineIndex, with: newValue)
+                // Render each line as either editable or rendered
+                ForEach(renderedLines.indices, id: \.self) { index in
+                    if index == editableLineIndex {
+                        // Editable line
+                        TextField("", text: Binding(
+                            get: { renderedLines[index] },
+                            set: { newValue in updateLine(at: index, with: newValue) }
+                        ))
+                        .textFieldStyle(.roundedBorder)
+                        .onTapGesture {
+                            cursorPosition = index // Set the tapped line as editable
+                        }
+                    } else {
+                        // Rendered line
+                        Markdown(renderedLines[index])
+                            .padding(.horizontal)
+                            .onTapGesture {
+                                cursorPosition = index // Set the tapped line as editable
+                            }
                     }
-                ))
-                .frame(height: 40) // Adjust height for single-line editing
-                .border(Color.gray)
-                
-                // Render lines after the current line
-                ForEach((currentLineIndex + 1)..<lines.count, id: \.self) { index in
-                    Markdown { preprocessMarkdown(lines[index]) }
-                        .padding(.horizontal)
                 }
             }
-        }
-        .padding()
-        .onAppear {
-            splitMarkdownText()
+            .padding()
         }
     }
     
-    private var lines: [String] {
+    // Split the markdown into lines for rendering and editing
+    private var renderedLines: [String] {
         markdownText.components(separatedBy: "\n")
     }
     
-    private func splitMarkdownText() {
-        guard !lines.isEmpty else { return }
-        currentLineIndex = 0 // Start with the first line as editable
+    private var editableLineIndex: Int {
+        cursorPosition ?? 0 // Default to the first line if no cursor position is set
     }
     
     private func updateLine(at index: Int, with newValue: String) {
-        var allLines = lines
-        allLines[index] = newValue
-        markdownText = allLines.joined(separator: "\n")
-    }
-    
-    private func preprocessMarkdown(_ input: String) -> String {
-        input.replacingOccurrences(of: "\n", with: "  \n") // Adds two spaces before newline for Markdown line breaks
+        var lines = renderedLines
+        lines[index] = newValue
+        markdownText = lines.joined(separator: "\n")
     }
 }
