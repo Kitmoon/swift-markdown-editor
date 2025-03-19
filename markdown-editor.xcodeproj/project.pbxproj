@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		FA94CC112D8AA5C6005FD601 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = FA94CC102D8AA5C6005FD601 /* MarkdownUI */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		FA94CBDE2D89F8F2005FD601 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA94CC112D8AA5C6005FD601 /* MarkdownUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +117,7 @@
 			);
 			name = "markdown-editor";
 			packageProductDependencies = (
+				FA94CC102D8AA5C6005FD601 /* MarkdownUI */,
 			);
 			productName = "markdown-editor";
 			productReference = FA94CBCA2D89F8F1005FD601 /* markdown-editor.app */;
@@ -195,6 +201,9 @@
 			);
 			mainGroup = FA94CBC12D89F8F1005FD601;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				FA94CC0F2D8AA5C6005FD601 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FA94CBCB2D89F8F1005FD601 /* Products */;
 			projectDirPath = "";
@@ -583,6 +592,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FA94CC0F2D8AA5C6005FD601 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/gonzalezreal/swift-markdown-ui";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.4.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FA94CC102D8AA5C6005FD601 /* MarkdownUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA94CC0F2D8AA5C6005FD601 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
+			productName = MarkdownUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FA94CBC22D89F8F1005FD601 /* Project object */;
 }
