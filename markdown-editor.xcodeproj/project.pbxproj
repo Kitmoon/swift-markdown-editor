@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FAC55D672D8AFD05008D8C08 /* SwiftDown in Frameworks */ = {isa = PBXBuildFile; productRef = FAC55D662D8AFD04008D8C08 /* SwiftDown */; };
+		FAC55D742D8B05FA008D8C08 /* Down in Frameworks */ = {isa = PBXBuildFile; productRef = FAC55D732D8B05FA008D8C08 /* Down */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,7 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAC55D672D8AFD05008D8C08 /* SwiftDown in Frameworks */,
+				FAC55D742D8B05FA008D8C08 /* Down in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,7 +117,7 @@
 			);
 			name = "markdown-editor";
 			packageProductDependencies = (
-				FAC55D662D8AFD04008D8C08 /* SwiftDown */,
+				FAC55D732D8B05FA008D8C08 /* Down */,
 			);
 			productName = "markdown-editor";
 			productReference = FA94CBCA2D89F8F1005FD601 /* markdown-editor.app */;
@@ -202,7 +202,7 @@
 			mainGroup = FA94CBC12D89F8F1005FD601;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				FAC55D652D8AFD04008D8C08 /* XCRemoteSwiftPackageReference "SwiftDown" */,
+				FAC55D722D8B05FA008D8C08 /* XCRemoteSwiftPackageReference "Down" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FA94CBCB2D89F8F1005FD601 /* Products */;
@@ -594,21 +594,21 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		FAC55D652D8AFD04008D8C08 /* XCRemoteSwiftPackageReference "SwiftDown" */ = {
+		FAC55D722D8B05FA008D8C08 /* XCRemoteSwiftPackageReference "Down" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/qeude/SwiftDown.git";
+			repositoryURL = "https://github.com/iwasrobbed/Down";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.4.1;
+				branch = master;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		FAC55D662D8AFD04008D8C08 /* SwiftDown */ = {
+		FAC55D732D8B05FA008D8C08 /* Down */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FAC55D652D8AFD04008D8C08 /* XCRemoteSwiftPackageReference "SwiftDown" */;
-			productName = SwiftDown;
+			package = FAC55D722D8B05FA008D8C08 /* XCRemoteSwiftPackageReference "Down" */;
+			productName = Down;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
